@@ -8,7 +8,7 @@ package proyecto_hash_tables;
  *
  * @author cgrc1
  */
-public class Proyecto_Hash_Tables {
+public class Main {
 
     /**
      * @param args the command line arguments
