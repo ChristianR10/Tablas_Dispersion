@@ -2,25 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Tabla_Hash;
-
-import EED.Lista;
+package Articulos_Cientificos;
 
 /**
  *
  * @author cgrc1
  */
-public class NodoHash {
-    private NodoHash pNextTit;
-    private NodoHash pNextAut;
-    private NodoHash pNextPalabra;
+public class NodoHash_Desprecated {
+    private NodoHash_Desprecated pNextTit;
+    private NodoHash_Desprecated pNextAut;
+    private NodoHash_Desprecated pNextPalabra;
     private Resumen resumen;
-    private NodoHash ListaAutores;
-    private NodoHash ListaPalabras;
+    private NodoHash_Desprecated ListaAutores;
+    private NodoHash_Desprecated ListaPalabras;
     private String Autor;
     private String Palabra_Clave;
 
-    public NodoHash(Resumen TxT) {
+    public NodoHash_Desprecated(Resumen TxT) {
         this.pNextTit = null;
         this.pNextAut = null;
         this.pNextPalabra = null;
@@ -32,27 +30,27 @@ public class NodoHash {
     }
 
 
-    public NodoHash getpNextTit() {
+    public NodoHash_Desprecated getpNextTit() {
         return pNextTit;
     }
 
-    public void setpNextTit(NodoHash pNextTit) {
+    public void setpNextTit(NodoHash_Desprecated pNextTit) {
         this.pNextTit = pNextTit;
     }
 
-    public NodoHash getpNextAut() {
+    public NodoHash_Desprecated getpNextAut() {
         return pNextAut;
     }
 
-    public void setpNextAut(NodoHash pNextAut) {
+    public void setpNextAut(NodoHash_Desprecated pNextAut) {
         this.pNextAut = pNextAut;
     }
 
-    public NodoHash getpNextPalabra() {
+    public NodoHash_Desprecated getpNextPalabra() {
         return pNextPalabra;
     }
 
-    public void setpNextPalabra(NodoHash pNextPalabra) {
+    public void setpNextPalabra(NodoHash_Desprecated pNextPalabra) {
         this.pNextPalabra = pNextPalabra;
     }
 
@@ -64,19 +62,19 @@ public class NodoHash {
         this.resumen = resumen;
     }
 
-    public NodoHash getListaAutores() {
+    public NodoHash_Desprecated getListaAutores() {
         return ListaAutores;
     }
 
-    public void setListaAutores(NodoHash ListaAutores) {
+    public void setListaAutores(NodoHash_Desprecated ListaAutores) {
         this.ListaAutores = ListaAutores;
     }
 
-    public NodoHash getListaPalabras() {
+    public NodoHash_Desprecated getListaPalabras() {
         return ListaPalabras;
     }
 
-    public void setListaPalabras(NodoHash ListaPalabras) {
+    public void setListaPalabras(NodoHash_Desprecated ListaPalabras) {
         this.ListaPalabras = ListaPalabras;
     }
 

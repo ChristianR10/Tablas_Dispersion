@@ -4,25 +4,27 @@
  */
 package EDD;
 
+import Articulos_Cientificos.Resumen;
+
 /**
  *
  * @author Andrés
  */
-public class LinkedList {
-    private Nodo pFirst;
+public class Lista_Hash {
+    private Nodo_Hash pFirst;
     private int size;
     
-    public LinkedList(){
+    public Lista_Hash(){
         this.pFirst = null;
         this.size = 0;
     }
     
-    public void add(Nodo node){
+    public void add(Nodo_Hash node){
         if(this.pFirst==null){
             this.pFirst = node;
         }
         else{
-            Nodo current = this.pFirst;
+            Nodo_Hash current = this.pFirst;
             while(current.getpNext()!=null){
                 current = current.getpNext();
             }
@@ -31,14 +33,40 @@ public class LinkedList {
         this.size++;
     }
     
-    public void remove(String info){
-        if(this.pFirst.getInfo().equals(info)){
+    public boolean nodoExist (String key){
+        boolean existe = false;
+        Nodo_Hash aux = pFirst;
+        while (aux!=null){
+            if (aux.getResumen().getTitulo().equals(key)){
+                existe = true;
+                break;
+            }
+            aux = aux.getpNext();
+        }      
+        return existe;
+    }
+    
+    public boolean keyExist (String key){
+        boolean existe = false;
+        Nodo_Hash aux = pFirst;
+        while (aux!=null){
+            if (aux.getKey().equals(key)){
+                existe = true;
+                break;
+            }
+            aux = aux.getpNext();
+        }      
+        return existe;
+    }
+    
+    public void remove(Resumen info){
+        if(this.pFirst.getResumen() == info){
             this.pFirst = this.pFirst.getpNext();
         }
         else{
-            Nodo current = this.pFirst.getpNext();
+            Nodo_Hash current = this.pFirst.getpNext();
             while(current!=null){
-                if(current.getpNext().getInfo().equals(info)){
+                if(current.getpNext().getResumen()==info){
                     current.setpNext(current.getpNext().getpNext());
                     this.size--;
                     break;
@@ -53,14 +81,14 @@ public class LinkedList {
     /**
      * @return the pFirst
      */
-    public Nodo getpFirst() {
+    public Nodo_Hash getpFirst() {
         return pFirst;
     }
 
     /**
      * @param pFirst the pFirst to set
      */
-    public void setpFirst(Nodo pFirst) {
+    public void setpFirst(Nodo_Hash pFirst) {
         this.pFirst = pFirst;
     }
 

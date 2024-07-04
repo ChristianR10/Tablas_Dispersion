@@ -4,27 +4,30 @@
  */
 package EDD;
 
+import Articulos_Cientificos.Resumen;
+
 /**
  *
  * @author Andrés
  */
-public class Nodo {
+public class Nodo_Hash {
 
-    private String info;
+    private Resumen resumen;
     private String key;
-    private Nodo pNext;
+    private Nodo_Hash pNext;
     
-    public Nodo(String info, String key){
-        this.info = info;
+    public Nodo_Hash(Resumen resumen, String key){
+        this.resumen = resumen;
         this.key = key;
         this.pNext = null;
     }
 
     /**
+     * 
      * @return the info
      */
-    public String getInfo() {
-        return info;
+    public Resumen getResumen() {
+        return resumen;
     }
 
     /**
@@ -37,14 +40,14 @@ public class Nodo {
     /**
      * @return the pNext
      */
-    public Nodo getpNext() {
+    public Nodo_Hash getpNext() {
         return pNext;
     }
 
     /**
      * @param pNext the pNext to set
      */
-    public void setpNext(Nodo pNext) {
+    public void setpNext(Nodo_Hash pNext) {
         this.pNext = pNext;
     }
     
