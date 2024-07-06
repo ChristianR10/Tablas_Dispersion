@@ -44,7 +44,28 @@ public final class Resumen {
     }
 
     public String getTexto() {
-        return Texto;
+        String ParsedText;
+        ParsedText = this.Titulo + "\n\n";
+        for(int i = 1; i < this.Autores.length; i++){
+            if(i == this.Autores.length - 1){
+                ParsedText = ParsedText + this.Autores[i] + ".";
+            } else{
+                ParsedText = ParsedText + this.Autores[i] + ", ";
+            }
+        }
+        ParsedText = ParsedText + "\n\n";
+        String[] AllWords = this.Cuerpo.split(" ");
+        int Counter = 15;
+        for(int i = 0; i < AllWords.length; i++){
+            if(Counter >= 15){
+                ParsedText = ParsedText + "\n" + AllWords[i];
+                Counter = 0;
+            } else{
+                ParsedText = ParsedText + " " + AllWords[i];
+                Counter++;
+            }
+        }
+        return ParsedText;
     }
 
     public void setTexto(String Texto) {
