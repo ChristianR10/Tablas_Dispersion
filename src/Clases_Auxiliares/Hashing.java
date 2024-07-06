@@ -5,6 +5,8 @@
 package Clases_Auxiliares;
 
 import Articulos_Cientificos.Resumen;
+import static java.lang.Math.abs;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,27 +22,29 @@ public class Hashing {
     }
     
     public void add(String key, Resumen info){
-        int index = key.hashCode() % size;
+        int index = abs(key.hashCode() % size);
         Nodo_Hash node = new Nodo_Hash(info, key);
+        if (Table[index] == null){Table[index] = new Lista_Hash();}
         Table[index].add(node);
     }
     
     public boolean newNode (String key){
-        int index = key.hashCode() % size;
+        int index = abs(key.hashCode() % size);
         boolean New = true;        
         if (Table[index] != null) {New = Table[index].nodoExist(key);}
         return New;
     }
     
     public boolean claveRepetida (String key){
-        int index = key.hashCode() % size; 
-        boolean claveRepetida = Table[index].keyExist(key);
+        int index = abs(key.hashCode() % size); 
+        boolean claveRepetida = false;
+        if (Table[index]!=null) {claveRepetida = Table[index].keyExist(key);}
         return claveRepetida;
     }
     
     public Lista_Hash get(String key){
         Lista_Hash results = new Lista_Hash();
-        int index = key.hashCode() % size;
+        int index = abs(key.hashCode() % size);
         Nodo_Hash current = Table[index].getpFirst();
         
         while(current!=null){
@@ -53,13 +57,12 @@ public class Hashing {
     }
     
     public String [] buscarKey (String key){
-        int index = key.hashCode() % size;
+        int index = abs(key.hashCode() % size);
         String lista [] = new String [this.Table[index].getSize()];
         Nodo_Hash aux = this.Table[index].getpFirst();
         for (int i =0 ; i< this.Table[index].getSize();i++){
             if (aux.getKey().equals(key)){
                 lista [i] = aux.getResumen().getTitulo();
-                break;
             }
             aux = aux.getpNext();
         }
@@ -67,7 +70,7 @@ public class Hashing {
     }
     
     public Resumen buscarResumen (String key){
-        int index = key.hashCode() % size;
+        int index = abs(key.hashCode() % size);
         Resumen resumen = null;
         Nodo_Hash aux = this.Table[index].getpFirst();
         while (aux != null){

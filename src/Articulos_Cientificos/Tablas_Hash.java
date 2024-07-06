@@ -32,6 +32,9 @@ public class Tablas_Hash {
         this.tablaPalabrasClaves = new Hashing (sizePal);
         this.allText = "";
         this.numAut = this.numPal = this.numTit = 0;
+        this.listaAutores = new String [sizeAut];
+        this.listaTitulos = new String [sizeTit];
+        this.listaPalabras_Claves = new String [sizePal];
     }
     
     public void LeerBaseDato (){
@@ -51,26 +54,26 @@ public class Tablas_Hash {
     public void AgregarResumen (String TxT){
         if (!TxT.equals("")){
             Resumen resumen = new Resumen (TxT);
-            if (!tablaTitulo.newNode(resumen.getTitulo())){
+            if (tablaTitulo.newNode(resumen.getTitulo())){
                 tablaTitulo.add(resumen.getTitulo(), resumen);
                 listaTitulos[numTit] = resumen.getTitulo();
                 numTit ++;
                 for (String autore : resumen.getAutores()) {
                     if (!autore.equals("")) {
-                        tablaAutores.add(autore, resumen);
                         if (!tablaAutores.claveRepetida(autore)){
                             listaAutores[numAut] = autore;
                             numAut ++;
                         }
+                        tablaAutores.add(autore, resumen);
                     }
                 }
                 for (String palabras_Clave : resumen.getPalabras_Claves()) {
                     if (!palabras_Clave.equals("")) {
-                        tablaPalabrasClaves.add(palabras_Clave, resumen);
                         if (!tablaPalabrasClaves.claveRepetida(palabras_Clave)){
                             listaPalabras_Claves[numPal] = palabras_Clave;
                             numPal ++;
                         }
+                        tablaPalabrasClaves.add(palabras_Clave, resumen);
                     }
                 }
                 this.allText += "NuevoResumenGuardado" + TxT;

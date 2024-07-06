@@ -25,18 +25,20 @@ public final class Resumen {
         if (!TxT.equals("")){
             this.Texto = TxT;
             String [] titulo = TxT.split("Autores");
-            this.Titulo = titulo[0];
+            this.Titulo = titulo[0].split("\r\n")[0];
             String [] autores = titulo[1].split("Resumen");
-            this.Autores = autores[0].split("\n");
+            this.Autores = autores[0].split("\r\n");
             String [] resumen = autores[1].split("Palabras claves: ");
             this.Cuerpo = resumen [0];
-            this.Palabras_Claves = resumen [1].split(", ");       
+            this.Palabras_Claves = resumen [1].split(", ");
+            this.Palabras_Claves[Palabras_Claves.length-1]=Palabras_Claves[Palabras_Claves.length-1].split("\r\n")[0];
         }
     }
     
     public int contarFrecuenciaPalabra (String palabra){
         int frecuencias = 0;
-        String textoPartido [] = this.Cuerpo.split(palabra);
+        String aux = this.Cuerpo.toLowerCase();
+        String textoPartido [] = aux.split(palabra.toLowerCase());
         frecuencias = textoPartido.length - 1;    
         return frecuencias;
     }

@@ -6,6 +6,7 @@ package Interfaz;
 
 import Articulos_Cientificos.Resumen;
 import Articulos_Cientificos.Tablas_Hash;
+import Clases_Auxiliares.BaseDatos;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -45,6 +46,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         agregar = new javax.swing.JToggleButton();
         salir = new javax.swing.JToggleButton();
         analizar = new javax.swing.JToggleButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -99,81 +101,105 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(analizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 130, 70));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 360));
+        jToggleButton1.setText("REINICIAR BD");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-        JFileChooser fc = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("archivos de texto", "txt");
-        fc.setFileFilter(filter);
-        int selection = fc.showOpenDialog(this);
-        
-        if (selection == JFileChooser.APPROVE_OPTION){
-            File fichero = fc.getSelectedFile();
-            
-            try (FileReader fr = new FileReader(fichero)){
-                String cadena = "";
-                int valor = fr.read();
-                while (valor != -1){
-                    cadena += (char) valor;
-                    valor = fr.read();
+        try{
+            JFileChooser fc = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("archivos de texto", "txt");
+            fc.setFileFilter(filter);
+            int selection = fc.showOpenDialog(this);
+
+            if (selection == JFileChooser.APPROVE_OPTION){
+                File fichero = fc.getSelectedFile();
+
+                try (FileReader fr = new FileReader(fichero)){
+                    String cadena = "";
+                    int valor = fr.read();
+                    while (valor != -1){
+                        cadena += (char) valor;
+                        valor = fr.read();
+                    }
+
+                    tablaHash.AgregarResumen(cadena);
+
                 }
-                
-                tablaHash.AgregarResumen(cadena);
-                
+                catch (IOException el){}
             }
-            catch (IOException el){}
         }
+        catch (Exception e){}
+
     }//GEN-LAST:event_agregarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        //tipo busqueda
-        String entrada []={"","Titulo","Autores", "Palabras Claves"};
-        String key = (String) JOptionPane.showInputDialog(null, "Elija el filtro de busqueda","",JOptionPane.DEFAULT_OPTION, null, entrada, entrada [0]);
-        String titulos [];
-        switch (key){
-            case "Titulo" -> {
-                key = (String) JOptionPane.showInputDialog(null, "Elija un titulo","",JOptionPane.DEFAULT_OPTION, null, this.tablaHash.getListaTitulos(), this.tablaHash.getListaTitulos()[0]);
-                this.tablaHash.imprimirResumen(key,0);
+        try{
+            String entrada []={"","Titulo","Autores", "Palabras Claves"};
+            String key = (String) JOptionPane.showInputDialog(null, "Elija el filtro de busqueda","",JOptionPane.DEFAULT_OPTION, null, entrada, entrada [0]);
+            String titulos [];
+            switch (key){
+                case "Titulo" -> {
+                    key = (String) JOptionPane.showInputDialog(null, "Elija un titulo","",JOptionPane.DEFAULT_OPTION, null, this.tablaHash.getListaTitulos(), this.tablaHash.getListaTitulos()[0]);
+                    this.tablaHash.imprimirResumen(key,0);
+                }
+                case "Autores" -> {
+                    key = (String) JOptionPane.showInputDialog(null, "Elija un autor","",JOptionPane.DEFAULT_OPTION, null, this.tablaHash.getListaAutores(), this.tablaHash.getListaAutores()[0]);
+                    titulos = this.tablaHash.buscarKey(this.tablaHash.getTablaAutores(), key);
+                    key = (String) JOptionPane.showInputDialog(null, "Elija un titulo","",JOptionPane.DEFAULT_OPTION, null, titulos, titulos[0]);
+                    this.tablaHash.imprimirResumen(key,0);
+
+                }
+                case "Palabras Claves" -> {
+                    key = (String) JOptionPane.showInputDialog(null, "Elija una palabra clave","",JOptionPane.DEFAULT_OPTION, null, this.tablaHash.getListaPalabras_Claves(), this.tablaHash.getListaPalabras_Claves()[0]);
+                    titulos = this.tablaHash.buscarKey(this.tablaHash.getTablaPalabrasClaves(), key);
+                    key = (String) JOptionPane.showInputDialog(null, "Elija un titulo","",JOptionPane.DEFAULT_OPTION, null, titulos, titulos[0]);
+                    this.tablaHash.imprimirResumen(key,0);
+                } 
             }
-            case "Autores" -> {
-                key = (String) JOptionPane.showInputDialog(null, "Elija un autor","",JOptionPane.DEFAULT_OPTION, null, this.tablaHash.getListaAutores(), this.tablaHash.getListaAutores()[0]);
-                titulos = this.tablaHash.buscarKey(this.tablaHash.getTablaAutores(), key);
-                key = (String) JOptionPane.showInputDialog(null, "Elija un titulo","",JOptionPane.DEFAULT_OPTION, null, titulos, titulos[0]);
-                this.tablaHash.imprimirResumen(key,0);
-                
-            }
-            case "Palabras Claves" -> {
-                key = (String) JOptionPane.showInputDialog(null, "Elija una palabra clave","",JOptionPane.DEFAULT_OPTION, null, this.tablaHash.getListaPalabras_Claves(), this.tablaHash.getListaPalabras_Claves()[0]);
-                titulos = this.tablaHash.buscarKey(this.tablaHash.getTablaPalabrasClaves(), key);
-                key = (String) JOptionPane.showInputDialog(null, "Elija un titulo","",JOptionPane.DEFAULT_OPTION, null, titulos, titulos[0]);
-                this.tablaHash.imprimirResumen(key,0);
-            } 
         }
+        catch (Exception e){}
     }//GEN-LAST:event_buscarActionPerformed
 
     private void analizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analizarActionPerformed
         // TODO add your handling code here:
-        String key = (String) JOptionPane.showInputDialog(null, "Elija un titulo","",JOptionPane.DEFAULT_OPTION, null, this.tablaHash.getListaTitulos(), this.tablaHash.getListaTitulos()[0]);
-        Resumen resumen = this.tablaHash.getTablaTitulo().buscarResumen(key);
-        String cadena = "Nombre del Trabajo: " + resumen.getTitulo() + "\n\nAutores:\n";
-        for (int i = 0; i<resumen.getAutores().length;i++){
-            cadena += resumen.getAutores()[i];
+        try{
+            String key = (String) JOptionPane.showInputDialog(null, "Elija un titulo","",JOptionPane.DEFAULT_OPTION, null, this.tablaHash.getListaTitulos(), this.tablaHash.getListaTitulos()[0]);
+            Resumen resumen = this.tablaHash.getTablaTitulo().buscarResumen(key);
+            String cadena = "Nombre del Trabajo: \n" + resumen.getTitulo() + "\n\nAutores:\n";
+            for (int i = 0; i<resumen.getAutores().length;i++){
+                if (!resumen.getAutores()[i].equals("")){
+                cadena += " - " + resumen.getAutores()[i] + "\n";
+            }}
+            cadena += "\nPalabras Claves:\n";
+            for (int i = 0; i<resumen.getPalabras_Claves().length;i++){
+                if (!resumen.getPalabras_Claves()[i].equals("")){
+                cadena += " - " + resumen.getPalabras_Claves()[i]+": " + resumen.contarFrecuenciaPalabra(resumen.getPalabras_Claves()[i]) + "\n";
+            }}   
+            JOptionPane.showMessageDialog(null, cadena);
         }
-        cadena += "\n\n";
-        for (int i = 0; i<resumen.getPalabras_Claves().length;i++){
-            cadena += resumen.getPalabras_Claves()[i]+": " + resumen.contarFrecuenciaPalabra(resumen.getPalabras_Claves()[i]);
-        }
-        
-        JOptionPane.showMessageDialog(null, cadena);
+        catch (Exception e){}
     }//GEN-LAST:event_analizarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         tablaHash.GuardarBaseDato();
         this.dispose();
     }//GEN-LAST:event_salirActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        BaseDatos BD = new BaseDatos ();
+        BD.guardarBaseDatos("");
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +242,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton salir;
     // End of variables declaration//GEN-END:variables
 }
