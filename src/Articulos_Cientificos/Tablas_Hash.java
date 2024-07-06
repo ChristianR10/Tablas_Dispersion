@@ -54,7 +54,7 @@ public class Tablas_Hash {
     public void AgregarResumen (String TxT){
         if (!TxT.equals("")){
             Resumen resumen = new Resumen (TxT);
-            if (tablaTitulo.newNode(resumen.getTitulo())){
+            if (!tablaTitulo.claveRepetida(resumen.getTitulo())){
                 tablaTitulo.add(resumen.getTitulo(), resumen);
                 listaTitulos[numTit] = resumen.getTitulo();
                 numTit ++;
@@ -80,7 +80,8 @@ public class Tablas_Hash {
                 ordenarArray (this.listaAutores);
                 ordenarArray (this.listaPalabras_Claves);
                 ordenarArray (this.listaTitulos);
-                
+                JOptionPane.showMessageDialog (null, "El resumen agregado con exito");
+
             }
             else {
                 JOptionPane.showMessageDialog (null, "El resumen insertado ya existe");

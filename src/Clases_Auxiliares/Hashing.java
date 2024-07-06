@@ -26,14 +26,7 @@ public class Hashing {
         Nodo_Hash node = new Nodo_Hash(info, key);
         if (Table[index] == null){Table[index] = new Lista_Hash();}
         Table[index].add(node);
-    }
-    
-    public boolean newNode (String key){
-        int index = abs(key.hashCode() % size);
-        boolean New = true;        
-        if (Table[index] != null) {New = Table[index].nodoExist(key);}
-        return New;
-    }
+    } 
     
     public boolean claveRepetida (String key){
         int index = abs(key.hashCode() % size); 

@@ -33,18 +33,6 @@ public class Lista_Hash {
         this.size++;
     }
     
-    public boolean nodoExist (String key){
-        boolean existe = false;
-        Nodo_Hash aux = pFirst;
-        while (aux!=null){
-            if (aux.getResumen().getTitulo().equals(key)){
-                existe = true;
-                break;
-            }
-            aux = aux.getpNext();
-        }      
-        return existe;
-    }
     
     public boolean keyExist (String key){
         boolean existe = false;
