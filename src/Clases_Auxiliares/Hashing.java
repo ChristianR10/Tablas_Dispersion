@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package EDD;
+package Clases_Auxiliares;
 
 import Articulos_Cientificos.Resumen;
 
@@ -15,7 +15,8 @@ public class Hashing {
     private int size;
     
     public Hashing(int size){
-        Table = new Lista_Hash[size];
+        this.Table = new Lista_Hash[size];
+        this.size = size;
     }
     
     public void add(String key, Resumen info){
@@ -26,8 +27,8 @@ public class Hashing {
     
     public boolean newNode (String key){
         int index = key.hashCode() % size;
-        boolean New;        
-        New = Table[index].nodoExist(key);
+        boolean New = true;        
+        if (Table[index] != null) {New = Table[index].nodoExist(key);}
         return New;
     }
     
@@ -49,5 +50,33 @@ public class Hashing {
             }
         }
         return results;
+    }
+    
+    public String [] buscarKey (String key){
+        int index = key.hashCode() % size;
+        String lista [] = new String [this.Table[index].getSize()];
+        Nodo_Hash aux = this.Table[index].getpFirst();
+        for (int i =0 ; i< this.Table[index].getSize();i++){
+            if (aux.getKey().equals(key)){
+                lista [i] = aux.getResumen().getTitulo();
+                break;
+            }
+            aux = aux.getpNext();
+        }
+        return lista;
+    }
+    
+    public Resumen buscarResumen (String key){
+        int index = key.hashCode() % size;
+        Resumen resumen = null;
+        Nodo_Hash aux = this.Table[index].getpFirst();
+        while (aux != null){
+            if (aux.getKey().equals(key)){
+                resumen = aux.getResumen();
+                break;
+            }
+            aux = aux.getpNext();
+        }
+        return resumen;
     }
 }

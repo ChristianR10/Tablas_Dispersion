@@ -22,14 +22,16 @@ public final class Resumen {
     }
     
     public void armarResumen (String TxT){
-        this.Texto = TxT;
-        String [] titulo = TxT.split("Autores");
-        this.Titulo = titulo[0];
-        String [] autores = titulo[1].split("Resumen");
-        this.Autores = autores[0].split("\n");
-        String [] resumen = autores[1].split("Palabras claves: ");
-        this.Cuerpo = resumen [0];
-        this.Palabras_Claves = resumen [1].split(", ");       
+        if (!TxT.equals("")){
+            this.Texto = TxT;
+            String [] titulo = TxT.split("Autores");
+            this.Titulo = titulo[0];
+            String [] autores = titulo[1].split("Resumen");
+            this.Autores = autores[0].split("\n");
+            String [] resumen = autores[1].split("Palabras claves: ");
+            this.Cuerpo = resumen [0];
+            this.Palabras_Claves = resumen [1].split(", ");       
+        }
     }
     
     public int contarFrecuenciaPalabra (String palabra){
