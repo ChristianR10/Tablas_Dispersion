@@ -64,6 +64,7 @@ public class Tablas_Hash {
                             listaAutores[numAut] = autore;
                             numAut ++;
                         }
+                        autore = autore.trim();
                         tablaAutores.add(autore, resumen);
                     }
                 }
