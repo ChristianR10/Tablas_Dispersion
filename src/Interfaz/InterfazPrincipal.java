@@ -124,7 +124,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     tablaHash.AgregarResumen(cadena);
 
                 }
-                catch (IOException el){}
+                catch (IOException el){JOptionPane.showMessageDialog(null, "El resumen insertado no es válido");}
             }
         }
         catch (Exception e){}

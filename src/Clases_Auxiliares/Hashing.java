@@ -6,6 +6,7 @@ import static java.lang.Math.abs;
 /**
  * Clase Hashing
  * Indica todo lo referente a la las tablas hash, asi como sus funciones
+ * Depende de la clase Lista_Hash
  * @author Andrés Rojas
  * @version 1.0
  */

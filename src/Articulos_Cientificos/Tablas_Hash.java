@@ -3,14 +3,29 @@ package Articulos_Cientificos;
 import Clases_Auxiliares.BaseDatos;
 import Clases_Auxiliares.Hashing;
 import java.util.Arrays;
-import java.util.Comparator;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author cgrc1
+ * Clase Resumen
+ * Incluye lo referente a la construcción de resumenes asi como sus principales funciones
+ * @author Christian Ramos
+ * @version 1.0
  */
+
 public class Tablas_Hash {
+    /**
+     * @param tablaTitulo objeto de tipo Hashing que indica la tabla hash de titulos
+     * @param tablaAutores objeto de tipo Hashing que indica la tabla hash de autores
+     * @param tablaPalabrasClaves objeto de tipo Hashing que indica la tabla hash de palabras claves
+     * @param listaTitulos array de tipo string que almacena los distintos titulos ingresados
+     * @param listaAutores array de tipo string que almacena los distintos autores ingresados
+     * @param listaPalabrasClaves array de tipo string que almacena los distintas palabras claves ingresadas
+     * @param numTit variable de tipo entera que indica la cantidad de titulos ingresados
+     * @param numAut variable de tipo entera que indica la cantidad de autores ingresados
+     * @param numPal variable de tipo entera que indica la cantidad de palabras claves ingresadas
+     * @param allText variable de tipo string que guarda una concatenacion de todos los resumenes ingresados
+     * @param BDcargada variable de tipo boolean que indica si la base de datos ya fue cargada
+     */
     private Hashing tablaTitulo;
     private Hashing tablaAutores;
     private Hashing tablaPalabrasClaves;
@@ -23,6 +38,12 @@ public class Tablas_Hash {
     private int numPal;
     private boolean BDcargada;
 
+    /**
+     * constructor de la clase Tablas_Hash
+     * @param sizeTit variable de tipo entero que indica el tamaño que se desea que posea la tabla hash de titulos
+     * @param sizeAut variable de tipo entero que indica el tamaño que se desea que posea la tabla hash de autores
+     * @param sizePal variable de tipo entero que indica el tamaño que se desea que posea la tabla hash de palabras claves
+     */
     public Tablas_Hash(int sizeTit, int sizeAut, int sizePal) {
         this.tablaTitulo = new Hashing (sizeTit);
         this.tablaAutores = new Hashing (sizeAut);
@@ -35,6 +56,9 @@ public class Tablas_Hash {
         this.BDcargada = false;
     }
     
+    /**
+     * metodo que lee la base de datos del sistema y carga los resumenes guardados
+     */
     public void LeerBaseDato (){
         BaseDatos BD = new BaseDatos ();
         this.allText = BD.leerBaseDatos();
@@ -45,11 +69,18 @@ public class Tablas_Hash {
         this.BDcargada = true;
     }
     
+    /**
+     * metodo que escribe la base de datos en base a los nuevos resumenes
+     */
     public void GuardarBaseDato (){
         BaseDatos BD = new BaseDatos ();
         BD.guardarBaseDatos(this.allText);
     }
     
+    /**
+     * funcion que agrega un nuevo resumen a las distintas tablas hash
+     * @param TxT variable de tipo string que indica toda la informacion que posee el resumen
+     */
     public void AgregarResumen (String TxT){
         if (!TxT.equals("")){
             Resumen resumen = new Resumen (TxT);
@@ -89,12 +120,23 @@ public class Tablas_Hash {
         }
     }
     
+    /**
+     * funcion que busca en el tabla hash seleccionada todos los resumenes que tengan una clave en comun
+     * @param tabla variable de tipo hashing que indica la tabla hash en la que se desea hacer la busqueda
+     * @param key variable de tipo string que indica la clave que se desea buscar
+     * @return array con todas las coincidencias
+     */
     public String [] buscarKey (Hashing tabla, String key){
         String lista [] = tabla.buscarKey(key);
         ordenarArray (lista);
         return lista;
     }
     
+    /**
+     * metodo que imprime en pantalla un resumen especifico
+     * @param key variable de tipo string que indica la clave del resumen solicitado
+     * @param seleccion variable de tipo entera que indica en que tabla hash se va a realizar la busqueda (0-Titulos, 1-autores, 2-palabras_claves)
+     */
     public void imprimirResumen (String key, int seleccion){
         Resumen resumen = null;
         switch (seleccion){
@@ -105,7 +147,10 @@ public class Tablas_Hash {
         JOptionPane.showMessageDialog(null, resumen.getTexto());
     }
     
-    
+    /**
+     * metodo que ordena de forma alfabetica un array ingresado
+     * @param array array de string que se desea ordenar
+     */
     public void ordenarArray (String [] array){
         Arrays.sort(array, (var o1, var o2) -> {
             if (o1 == null && o2 == null) {
@@ -121,30 +166,47 @@ public class Tablas_Hash {
         });
     }
 
+    /**
+     * @return variable interna TablaTitulo
+     */
     public Hashing getTablaTitulo() {
         return tablaTitulo;
     }
 
+    /**
+     * @return variable interna TablaAutores
+     */
     public Hashing getTablaAutores() {
         return tablaAutores;
     }
 
+    /**
+     * @return variable interna TablaPalabrasClaves
+     */
     public Hashing getTablaPalabrasClaves() {
         return tablaPalabrasClaves;
     }
 
+    /**
+     * @return variable interna ListaTitulos
+     */
     public String[] getListaTitulos() {
         return listaTitulos;
     }
 
+    /**
+     * @return variable interna ListaAutores
+     */
     public String[] getListaAutores() {
         return listaAutores;
     }
 
+    /**
+     * @return variable interna ListaPalabras_Claves
+     */
     public String[] getListaPalabras_Claves() {
         return listaPalabras_Claves;
     }
 
-    
     
 }

@@ -63,8 +63,8 @@ public final class Resumen {
     }
 
     /**
-     * 
-     * @return 
+     * funcion que en base a los parametros internos, prepara un string para imprimir en pantalla
+     * @return string con toda la informacion del resumen
      * @author Andres Rojas
      */
     public String getTexto() {
