@@ -29,13 +29,13 @@ public class Tablas_Hash {
     private Hashing tablaTitulo;
     private Hashing tablaAutores;
     private Hashing tablaPalabrasClaves;
-    private String allText;
     private String [] listaTitulos;
-    private int numTit;
     private String [] listaAutores;
-    private int numAut;
     private String [] listaPalabras_Claves;
+    private int numTit;
+    private int numAut;
     private int numPal;
+    private String allText;
     private boolean BDcargada;
 
     /**
