@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Articulos_Cientificos;
 
 import Clases_Auxiliares.BaseDatos;
@@ -25,6 +21,7 @@ public class Tablas_Hash {
     private int numAut;
     private String [] listaPalabras_Claves;
     private int numPal;
+    private boolean BDcargada;
 
     public Tablas_Hash(int sizeTit, int sizeAut, int sizePal) {
         this.tablaTitulo = new Hashing (sizeTit);
@@ -35,6 +32,7 @@ public class Tablas_Hash {
         this.listaAutores = new String [sizeAut];
         this.listaTitulos = new String [sizeTit];
         this.listaPalabras_Claves = new String [sizePal];
+        this.BDcargada = false;
     }
     
     public void LeerBaseDato (){
@@ -44,6 +42,7 @@ public class Tablas_Hash {
         for (String listaGuardado : listaGuardados) {
             AgregarResumen(listaGuardado);
         }
+        this.BDcargada = true;
     }
     
     public void GuardarBaseDato (){
@@ -59,12 +58,12 @@ public class Tablas_Hash {
                 listaTitulos[numTit] = resumen.getTitulo();
                 numTit ++;
                 for (String autore : resumen.getAutores()) {
+                    autore = autore.trim();
                     if (!autore.equals("")) {
                         if (!tablaAutores.claveRepetida(autore)){
                             listaAutores[numAut] = autore;
                             numAut ++;
                         }
-                        autore = autore.trim();
                         tablaAutores.add(autore, resumen);
                     }
                 }
@@ -81,7 +80,7 @@ public class Tablas_Hash {
                 ordenarArray (this.listaAutores);
                 ordenarArray (this.listaPalabras_Claves);
                 ordenarArray (this.listaTitulos);
-                JOptionPane.showMessageDialog (null, "El resumen agregado con exito");
+                if (this.BDcargada) {JOptionPane.showMessageDialog (null, "Resumen agregado con exito");}
 
             }
             else {
@@ -126,48 +125,26 @@ public class Tablas_Hash {
         return tablaTitulo;
     }
 
-    public void setTablaTitulo(Hashing tablaTitulo) {
-        this.tablaTitulo = tablaTitulo;
-    }
-
     public Hashing getTablaAutores() {
         return tablaAutores;
-    }
-
-    public void setTablaAutores(Hashing tablaAutores) {
-        this.tablaAutores = tablaAutores;
     }
 
     public Hashing getTablaPalabrasClaves() {
         return tablaPalabrasClaves;
     }
 
-    public void setTablaPalabrasClaves(Hashing tablaPalabrasClaves) {
-        this.tablaPalabrasClaves = tablaPalabrasClaves;
-    }
-
     public String[] getListaTitulos() {
         return listaTitulos;
-    }
-
-    public void setListaTitulos(String[] listaTitulos) {
-        this.listaTitulos = listaTitulos;
     }
 
     public String[] getListaAutores() {
         return listaAutores;
     }
 
-    public void setListaAutores(String[] listaAutores) {
-        this.listaAutores = listaAutores;
-    }
-
     public String[] getListaPalabras_Claves() {
         return listaPalabras_Claves;
     }
 
-    public void setListaPalabras_Claves(String[] listaPalabras_Claves) {
-        this.listaPalabras_Claves = listaPalabras_Claves;
-    }
+    
     
 }

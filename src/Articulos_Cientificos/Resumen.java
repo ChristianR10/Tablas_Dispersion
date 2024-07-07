@@ -1,26 +1,39 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Articulos_Cientificos;
 
-import javax.swing.JOptionPane;
-
 /**
- *
- * @author cgrc1
+ * Clase Resumen
+ * Incluye lo referente a la construcción de resumenes asi como sus principales funciones
+ * @author Christian Ramos y Andres Rojas
+ * @version 1.0
  */
+
 public final class Resumen {
+    /**
+     * @param Texto variable de tipo string que almacena toda la informacion leida del txt
+     * @param Titulo variable de tipo string que almacena el titulo del resumen
+     * @param Autores array de tipo string que guarda los distintos autores del resumen
+     * @param Palabras_Claves array de tipo string que guarda las distintas palabras clave del resumen
+     * @param Cuerpo variable de tipo string que guarda todo el cuerpo del resumen
+     */
     private String Texto;
     private String Autores [];
     private String Titulo;
     private String Cuerpo;
     private String Palabras_Claves [];
 
+    /**
+     * constructor clase resumen
+     * @param TxT variable de tipo string que guarda toda la informacion leida del archivo txt
+     */
     public Resumen(String TxT) {
         this.armarResumen (TxT);
     }
     
+    /**
+     * funcion que lee el txt y lo disecciona en las distintas variables internas de la clase
+     * @param TxT variable de tipo string que guarda toda la informacion leida del archivo txt
+     * @author Christian Ramos
+     */
     public void armarResumen (String TxT){
         if (!TxT.equals("")){
             this.Texto = TxT;
@@ -35,6 +48,12 @@ public final class Resumen {
         }
     }
     
+    /**
+     * funcion que cuenta la cantidad de veces que una palabra ingresada por el usuario aparece en el cuerpo del resumen
+     * @param palabra variable de tipo string que indica la palabra que se desea conocer la frecuencia
+     * @return variable de tipo entera que indica la cantidad de veces que aparece la palabra solicitada
+     * @author Christian Ramos
+     */
     public int contarFrecuenciaPalabra (String palabra){
         int frecuencias = 0;
         String aux = this.Cuerpo.toLowerCase();
@@ -43,9 +62,14 @@ public final class Resumen {
         return frecuencias;
     }
 
+    /**
+     * 
+     * @return 
+     * @author Andres Rojas
+     */
     public String getTexto() {
         String ParsedText;
-        ParsedText = this.Titulo + "\n\n";
+        ParsedText = this.Titulo + "\n\n Autores: ";
         for(int i = 1; i < this.Autores.length; i++){
             if(i == this.Autores.length - 1){
                 ParsedText = ParsedText + this.Autores[i] + ".";
@@ -65,38 +89,46 @@ public final class Resumen {
                 Counter++;
             }
         }
+        ParsedText = ParsedText + "\n\n Palabras Clave: ";
+        for(int i = 0; i < this.Palabras_Claves.length; i++){
+            if(i == this.Autores.length - 1){
+                ParsedText = ParsedText + this.Palabras_Claves[i] + ".";
+            } else{
+                ParsedText = ParsedText + this.Palabras_Claves[i] + ", ";
+            }
+        }
+        
         return ParsedText;
     }
-
-    public void setTexto(String Texto) {
-        this.Texto = Texto;
-    }
-
+    
+    
+    /**
+     * @return variable interna autores
+     */
     public String[] getAutores() {
         return Autores;
     }
 
-    public void setAutores(String[] Autores) {
-        this.Autores = Autores;
-    }
-
+    /**
+     * @return variable interna titulo
+     */
     public String getTitulo() {
         return Titulo;
     }
 
-    public void setTitulo(String Titulo) {
-        this.Titulo = Titulo;
+    /**
+     * @return variable interna cuerpo
+     */
+    public String getCuerpo() {
+        return Cuerpo;
     }
 
+    /**
+     * @return variable interna palabras_claves
+     */
     public String[] getPalabras_Claves() {
         return Palabras_Claves;
     }
 
-    public void setPalabras_Claves(String[] Palabras_Claves) {
-        this.Palabras_Claves = Palabras_Claves;
-    }
-
-    
-    
     
 }
