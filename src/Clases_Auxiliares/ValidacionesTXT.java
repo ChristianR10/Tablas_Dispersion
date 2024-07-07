@@ -11,8 +11,8 @@ import javax.swing.JOptionPane;
  * @author Massi
  */
 public class ValidacionesTXT {
-    int IntanceOfTitulo = 0;
-    int InstanceOfAutores= 0;
+    /*int IntanceOfTitulo = 0;
+    int InstanceOfAutores = 0;
     int InstanceOfResumen = 0; 
     int InstanceOfKeys = 0;
     String txtFromTitulo;
@@ -35,7 +35,7 @@ public class ValidacionesTXT {
             JOptionPane.showMessageDialog(null, "No se encuentran las Palabras clave");
         }
         return "";
-}   else {
+    }   else {
             txtFromAutores = txt.substring(InstanceOfAutores + 4);
             txtFromResumen = txt.substring(InstanceOfResumen + );
             txtFromKeys = txt.substring(InstanceOfKeys + 2);
@@ -58,6 +58,6 @@ public class ValidacionesTXT {
             }
             txtFromAutores = txtFromAutores.subtring(0, InstanceOfAutores);
             txtFromResumen = txtFromResumen.substring(0, InstanceOfResumen);
-            txtFromKeys = txtFromKeys.substring(0, InstanceOfKeys);    
+            txtFromKeys = txtFromKeys.substring(0, InstanceOfKeys);  */  
 }
 

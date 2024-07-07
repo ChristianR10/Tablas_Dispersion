@@ -46,7 +46,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         agregar = new javax.swing.JToggleButton();
         salir = new javax.swing.JToggleButton();
         analizar = new javax.swing.JToggleButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -101,15 +100,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(analizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 130, 70));
 
-        jToggleButton1.setText("REINICIAR BD");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, -1, -1));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 390));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,12 +186,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_salirActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        BaseDatos BD = new BaseDatos ();
-        BD.guardarBaseDatos("");
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -242,7 +227,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton salir;
     // End of variables declaration//GEN-END:variables
 }
