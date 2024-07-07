@@ -51,6 +51,10 @@ public class Hashing {
     
     public String [] buscarKey (String key){
         int index = abs(key.hashCode() % size);
+        if(this.Table[index] == null){
+            String lista [] = new String [1];
+            return lista;
+        }
         String lista [] = new String [this.Table[index].getSize()];
         Nodo_Hash aux = this.Table[index].getpFirst();
         for (int i =0 ; i< this.Table[index].getSize();i++){
