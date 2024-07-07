@@ -41,9 +41,16 @@ public final class Resumen {
             this.Titulo = titulo[0].split("\r\n")[0];
             String [] autores = titulo[1].split("Resumen");
             this.Autores = autores[0].split("\r\n");
-            String [] resumen = autores[1].split("Palabras claves: ");
-            this.Cuerpo = resumen [0];
-            this.Palabras_Claves = resumen [1].split(", ");
+            String [] resumen;
+            if(autores[1].contains("Palabras claves: ")){
+                resumen = autores[1].split("Palabras claves: ");
+            } else if(autores[1].contains("Palabras Claves: ")){
+                resumen = autores[1].split("Palabras Claves: ");
+            } else{
+                resumen = autores[1].split("palabras claves: ");
+            }
+            this.Cuerpo = resumen[0];
+            this.Palabras_Claves = resumen[1].split(", ");
             this.Palabras_Claves[Palabras_Claves.length-1]=Palabras_Claves[Palabras_Claves.length-1].split("\r\n")[0];
         }
     }

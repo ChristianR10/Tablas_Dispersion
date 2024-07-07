@@ -90,12 +90,21 @@ public class Tablas_Hash {
                 numTit ++;
                 for (String autore : resumen.getAutores()) {
                     autore = autore.trim();
-                    if (!autore.equals("")) {
-                        if (!tablaAutores.claveRepetida(autore)){
-                            listaAutores[numAut] = autore;
+                    String[] names = autore.split((" "));
+                    String author = "";
+                    for(int i = 0; i < names.length; i++){
+                        String[] IndNames = names[i].split("-");
+                        for(int j = 0; j < IndNames.length; j++){
+                            author = author + IndNames[j] + " ";
+                        }
+                    }
+                    author = author.trim();
+                    if (!author.equals("")) {
+                        if (!tablaAutores.claveRepetida(author)){
+                            listaAutores[numAut] = author;
                             numAut ++;
                         }
-                        tablaAutores.add(autore, resumen);
+                        tablaAutores.add(author, resumen);
                     }
                 }
                 for (String palabras_Clave : resumen.getPalabras_Claves()) {
@@ -111,7 +120,7 @@ public class Tablas_Hash {
                 ordenarArray (this.listaAutores);
                 ordenarArray (this.listaPalabras_Claves);
                 ordenarArray (this.listaTitulos);
-                if (this.BDcargada) {JOptionPane.showMessageDialog (null, "Resumen agregado con exito");}
+                JOptionPane.showMessageDialog (null, "El resumen agregado con exito");
 
             }
             else {
