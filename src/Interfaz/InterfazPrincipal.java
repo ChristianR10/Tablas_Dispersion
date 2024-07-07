@@ -153,7 +153,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     this.tablaHash.imprimirResumen(key,0);
                 }
                 case "Autores" -> {
-                    key = (String) JOptionPane.showInputDialog("Ingrese el autor que desea buscar.");
+                    key = (String) JOptionPane.showInputDialog(null, "Elija un autor","",JOptionPane.DEFAULT_OPTION, null, this.tablaHash.getListaAutores(), this.tablaHash.getListaAutores()[0]);
                     titulos = this.tablaHash.buscarKey(this.tablaHash.getTablaAutores(), key);
                     key = (String) JOptionPane.showInputDialog(null, "Elija un titulo","",JOptionPane.DEFAULT_OPTION, null, titulos, titulos[0]);
                     this.tablaHash.imprimirResumen(key,0);

@@ -59,12 +59,12 @@ public class Tablas_Hash {
                 listaTitulos[numTit] = resumen.getTitulo();
                 numTit ++;
                 for (String autore : resumen.getAutores()) {
+                    autore = autore.trim();
                     if (!autore.equals("")) {
                         if (!tablaAutores.claveRepetida(autore)){
                             listaAutores[numAut] = autore;
                             numAut ++;
                         }
-                        autore = autore.trim();
                         tablaAutores.add(autore, resumen);
                     }
                 }

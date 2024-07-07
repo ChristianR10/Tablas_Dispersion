@@ -45,7 +45,7 @@ public final class Resumen {
 
     public String getTexto() {
         String ParsedText;
-        ParsedText = this.Titulo + "\n\n";
+        ParsedText = this.Titulo + "\n\n Autores: ";
         for(int i = 1; i < this.Autores.length; i++){
             if(i == this.Autores.length - 1){
                 ParsedText = ParsedText + this.Autores[i] + ".";
@@ -65,6 +65,15 @@ public final class Resumen {
                 Counter++;
             }
         }
+        ParsedText = ParsedText + "\n\n Palabras Clave: ";
+        for(int i = 0; i < this.Palabras_Claves.length; i++){
+            if(i == this.Autores.length - 1){
+                ParsedText = ParsedText + this.Palabras_Claves[i] + ".";
+            } else{
+                ParsedText = ParsedText + this.Palabras_Claves[i] + ", ";
+            }
+        }
+        
         return ParsedText;
     }
 
