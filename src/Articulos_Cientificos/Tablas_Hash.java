@@ -120,11 +120,11 @@ public class Tablas_Hash {
                 ordenarArray (this.listaAutores);
                 ordenarArray (this.listaPalabras_Claves);
                 ordenarArray (this.listaTitulos);
-                JOptionPane.showMessageDialog (null, "El resumen agregado con exito");
+                if (this.BDcargada){JOptionPane.showMessageDialog (null, "Resumen agregado con exito");}
 
             }
             else {
-                JOptionPane.showMessageDialog (null, "El resumen insertado ya existe");
+                if (this.BDcargada){JOptionPane.showMessageDialog (null, "El resumen ingresado ya existe");}
             }
         }
     }

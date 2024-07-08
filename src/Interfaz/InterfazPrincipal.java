@@ -127,7 +127,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 catch (IOException el){JOptionPane.showMessageDialog(null, "El resumen insertado no es válido");}
             }
         }
-        catch (Exception e){}
+        catch (Exception e){JOptionPane.showMessageDialog(null, "El archivo insertado no es válido");}
 
     }//GEN-LAST:event_agregarActionPerformed
 
@@ -193,8 +193,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
      * boton para salir del sistema y guardar en txt la info de la base de datos
      */
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        tablaHash.GuardarBaseDato();
-        this.dispose();
+        int option = JOptionPane.showConfirmDialog(null, "¿Seguro que desea salir del sistema?","",JOptionPane.YES_NO_OPTION);
+        if (option == 0) {
+            tablaHash.GuardarBaseDato();
+            this.dispose();
+        } 
     }//GEN-LAST:event_salirActionPerformed
 
     /**
